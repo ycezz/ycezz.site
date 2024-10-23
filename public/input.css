@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.a-link {
+  @apply hover:text-[#FF644D];
+}
+
+.logo {
+  @apply cursor-pointer text-[40px] font-medium;
+}
+
+.logo-mobile {
+  @apply cursor-pointer text-[20px] font-medium;
+}
+
+.nav-link {
+  @apply flex items-center space-x-10 hover:text-[#FF644D];
+}
+
+.custom-shadow {
+  @apply border border-solid border-black shadow-[0px_8px_0px_rgba(0,0,0,1)];
+}
+
+.custom-shadow-contact {
+  @apply border border-solid border-black shadow-[0px_5px_0px_rgba(0,0,0,1)];
+}
