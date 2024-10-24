@@ -12,3 +12,5 @@ Route::get('/about/{about:slug}', [FrontController::class, 'about'])->name('fron
 Route::get('/portfolio/{portfolio:slug}', [FrontController::class, 'portfolio'])->name('front.portfolio');
 
 Route::get('/search', [FrontController::class, 'search'])->name('front.search');
+
+Route::get('/quote', [FrontController::class, 'quote'])->name('front.quote');
