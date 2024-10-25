@@ -8,7 +8,7 @@
         <a href="{{ route('front.index') }}" class="logo">ycezz.site</a>
       </div>
       <div class="relative">
-        <form action="{{ route('front.search') }}">
+        <form action="{{ route('front.search') }}" method="GET">
 
             @csrf
 
@@ -73,7 +73,10 @@
           >
         </li>
         <li class="relative">
-          <form action="searchPage.html">
+          <form action="{{ route('front.search') }}" method="GET">
+
+            @csrf
+
             <input
               type="text"
               placeholder="Search..."
@@ -112,7 +115,7 @@
       id="Navbar"
       class="hidden items-center justify-center px-6 py-4 lg:flex lg:space-x-10 lg:py-4"
     >
-      <a href="{{ route('front.search') }}" class="nav-link">
+      <a href="{{ route('front.search', ['keyword' => '']) }}" class="nav-link">
         <i
           class="fa-regular fa-newspaper hover:text-[#FF644D]"
           width="24"

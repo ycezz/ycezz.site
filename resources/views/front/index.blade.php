@@ -1,9 +1,6 @@
 @extends('front.master')
 @section('content')
-<body
-class="bg-white font-space text-base text-[#1B2E35] lg:text-xl"
-x-data="{ openMenu : false }"
->
+
   <x-navbar/>
     <main
       class="justify-center px-[50px] py-[5px] lg:flex lg:flex-col lg:px-[100px] lg:py-[76px]"
@@ -116,7 +113,7 @@ x-data="{ openMenu : false }"
         </section>
     </main>
   <x-footer/>  
-</body>    
+ 
 @endsection
 
 

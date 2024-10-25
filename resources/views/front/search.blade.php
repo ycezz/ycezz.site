@@ -1,10 +1,6 @@
 @extends('front.master')
 @section('content')
 
-<body
-class="bg-white font-space text-base text-[#1B2E35] lg:text-xl"
-x-data="{ openMenu : false }"
->
   <x-navbar/>
       <main
         class="justify-center px-[50px] py-[5px] lg:flex lg:flex-col lg:px-[100px] lg:py-[76px]"
@@ -41,57 +37,28 @@ x-data="{ openMenu : false }"
         </section>
 
         <section id="Blog">
-          <div
-            class="mt-[80px] grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-5 xl:grid-cols-3"
-          >
-            <div class="custom-shadow max-w-screen-sm rounded-3xl">
-              <a href="details.html">
-                <img
-                  class="rounded-t-3xl"
-                  src="/src/img/alpukat.jpg"
-                  alt="image-blog"
-                />
-              </a>
+          <div class="mt-[80px] grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+        
+            @forelse ($blogs as $blog)
+                <div class="custom-shadow max-w-screen-sm max-h-[100px] rounded-3xl overflow-hidden">
+                  <a href="{{ route('front.details', $blog->slug) }}">
+                    <img
+                      class="rounded-t-3xl h-auto w-full object-cover"
+                      src="{{ Storage::url($blog->thumbnail) }}"
+                      alt="image-blog"
+                    />
+                  </a>
+                  <div class="p-5">
+                    <h3 class="mt-5 text-[30px] font-medium leading-loose">
+                      {{ substr($blog->name, 0, 50) }}{{ strlen($blog->name) > 50 ? '...' : '' }}
+                    </h3>
+                    <p class="mt-10 text-gray-600">{{ $blog->created_at->format('M d, Y') }}</p>
+                  </div>
+                </div>
+              @empty
+                <p>Empty data.</p>
+              @endforelse
 
-              <div class="p-5">
-                <h3 class="mt-5 text-[20px] font-medium md:text-[30px]">
-                  Increase Sales use Pay-per-click
-                </h3>
-                <p class="mt-10 text-gray-600">Oct 14, 2024</p>
-              </div>
-            </div>
-            <div class="custom-shadow max-w-screen-sm rounded-3xl">
-              <a href="details.html">
-                <img
-                  class="rounded-t-3xl"
-                  src="/src/img/alpukat.jpg"
-                  alt="image-blog"
-                />
-              </a>
-
-              <div class="p-5">
-                <h3 class="mt-5 text-[20px] font-medium md:text-[30px]">
-                  Increase Sales use Pay-per-click
-                </h3>
-                <p class="mt-10 text-gray-600">Oct 14, 2024</p>
-              </div>
-            </div>
-            <div class="custom-shadow max-w-screen-sm rounded-3xl">
-              <a href="details.html">
-                <img
-                  class="rounded-t-3xl"
-                  src="/src/img/alpukat.jpg"
-                  alt="image-blog"
-                />
-              </a>
-
-              <div class="p-5">
-                <h3 class="mt-5 text-[20px] font-medium md:text-[30px]">
-                  Increase Sales use Pay-per-click
-                </h3>
-                <p class="mt-10 text-gray-600">Oct 14, 2024</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -101,20 +68,20 @@ x-data="{ openMenu : false }"
           class="mx-auto mt-[70px] flex max-w-[1130px] justify-center"
         >
           <div class="flex w-fit shrink-0 flex-col gap-3">
-            <a href="https://flowbite.com/">
+            <a href="{{ $bannerads->link }}">
               <div
                 class="flex h-[120px] w-[300px] shrink-0 overflow-hidden rounded-2xl border border-[#EEF0F7] md:w-[600px] xl:h-[150px] xl:w-[1000px]"
               >
                 <img
-                  src="/src/img/alpukat.jpg"
-                  class="h-full w-full object-cover"
+                  src="{{ Storage::url($bannerads->thumbnail) }}"
+                  class="h-auto w-full object-cover"
                   alt="ads"
                 />
               </div>
             </a>
             <div class="group relative flex gap-1">
               <img
-                src="/src/img/Question_light.svg"
+                src="{{ asset('assets/icon/Question_light.svg') }}"
                 alt="question-ads"
                 class="h-[18px] w-[18px]"
               />
@@ -133,6 +100,5 @@ x-data="{ openMenu : false }"
           </div>
         </section>
       </main>
-    <x-footer/>  
-</body>    
+    <x-footer/>    
 @endsection

@@ -30,7 +30,11 @@
     @stack('after-styles')
   </head>
 
-  @yield('content')
-  
+  <body
+class="bg-white font-space text-base text-[#1B2E35] lg:text-xl"
+x-data="{ openMenu : false }"
+>
+    @yield('content')
+  </body>
 
 </html>

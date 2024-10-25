@@ -34,11 +34,24 @@ class FrontController extends Controller
             'keyword' => ['required', 'string', 'max:255']
         ]);
 
+        $blogs = Blog::all();
+
         $keyword = $request->keyword;
 
-        $blogs = Blog::where('is_featured', 'featured')
-        ->where('name', 'like', '%' .$keyword . '%')->paginate(6);
+        $blogs = Blog::where('name', 'like', '%' . $keyword . '%')
+                 ->inRandomOrder()
+                 ->paginate(6);
 
-        return view('front.search', compact('blogs', 'keyword'));
+        $bannerads = BannerAdvertisement::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+
+        // dd($request->keyword); // Tambahkan ini
+
+        // $blogs = Blog::where('is_featured', 'featured')
+        // ->where('name', 'like', '%' .$keyword . '%')->paginate(6);
+
+        return view('front.search', compact('blogs', 'keyword', 'bannerads'));
     }
 }
